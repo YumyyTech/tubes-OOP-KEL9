@@ -15,8 +15,8 @@ public class ChartPanel extends JPanel {
         setBackground(Color.WHITE);
     }
 
-    public void setPoll(Poll poll) {
-        this.poll = poll;
+    public void setPoll(Poll poll2) {
+        this.poll = poll2;
         repaint();
     }
 
@@ -45,5 +45,10 @@ public class ChartPanel extends JPanel {
             g.drawString("" + poll.getVoteCount(i), x + 20, 190 - h);
             x += 90;
         }
+    }
+
+    public void setPoll(Poll poll2) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'setPoll'");
     }
 }
