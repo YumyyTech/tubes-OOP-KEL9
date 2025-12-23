@@ -3,7 +3,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Other/File.java to edit this template
  */
 
-
 /**
  *
  * @author rank
@@ -15,10 +14,10 @@ public class ChartPanel extends JPanel {
 
     private Poll poll;
     private Color[] colors = {
-        new Color(52, 152, 219), new Color(231, 76, 60), new Color(46, 204, 113),
-        new Color(155, 89, 182), new Color(241, 196, 15), new Color(26, 188, 156),
-        new Color(230, 126, 34), new Color(149, 165, 166), new Color(52, 73, 94),
-        new Color(22, 160, 133)
+            new Color(52, 152, 219), new Color(231, 76, 60), new Color(46, 204, 113),
+            new Color(155, 89, 182), new Color(241, 196, 15), new Color(26, 188, 156),
+            new Color(230, 126, 34), new Color(149, 165, 166), new Color(52, 73, 94),
+            new Color(22, 160, 133)
     };
 
     public ChartPanel(Poll poll) {
@@ -58,15 +57,14 @@ public class ChartPanel extends JPanel {
 
         for (int i = 0; i < poll.getOptions().length; i++) {
             int height = poll.getVoteCount(i) * 150 / max;
-            
+
             // Gambar batang grafik dengan gradient
             GradientPaint gradient = new GradientPaint(
-                x, getHeight() - 40 - height, colors[i % colors.length],
-                x, getHeight() - 40, colors[i % colors.length].darker()
-            );
+                    x, getHeight() - 40 - height, colors[i % colors.length],
+                    x, getHeight() - 40, colors[i % colors.length].darker());
             g2d.setPaint(gradient);
             g2d.fillRect(x, getHeight() - 40 - height, barWidth, height);
-            
+
             // Border batang
             g2d.setColor(Color.BLACK);
             g2d.drawRect(x, getHeight() - 40 - height, barWidth, height);
@@ -76,18 +74,18 @@ public class ChartPanel extends JPanel {
             if (optionText.length() > 10) {
                 optionText = optionText.substring(0, 10) + "...";
             }
-            
+
             g2d.setColor(Color.BLACK);
             g2d.setFont(new Font("Arial", Font.PLAIN, 11));
-            
+
             // Putar teks 45 derajat jika terlalu panjang
             FontMetrics fm = g2d.getFontMetrics();
             if (fm.stringWidth(optionText) > barWidth) {
-                g2d.rotate(Math.toRadians(45), x + barWidth/2, getHeight() - 20);
+                g2d.rotate(Math.toRadians(45), x + barWidth / 2, getHeight() - 20);
                 g2d.drawString(optionText, x - 10, getHeight() - 20);
-                g2d.rotate(Math.toRadians(-45), x + barWidth/2, getHeight() - 20);
+                g2d.rotate(Math.toRadians(-45), x + barWidth / 2, getHeight() - 20);
             } else {
-                g2d.drawString(optionText, x + (barWidth - fm.stringWidth(optionText))/2, getHeight() - 20);
+                g2d.drawString(optionText, x + (barWidth - fm.stringWidth(optionText)) / 2, getHeight() - 20);
             }
 
             // Jumlah vote di atas batang
@@ -95,7 +93,7 @@ public class ChartPanel extends JPanel {
             g2d.setColor(Color.BLACK);
             g2d.setFont(new Font("Arial", Font.BOLD, 12));
             int textWidth = g2d.getFontMetrics().stringWidth(voteCount);
-            g2d.drawString(voteCount, x + (barWidth - textWidth)/2, getHeight() - 45 - height);
+            g2d.drawString(voteCount, x + (barWidth - textWidth) / 2, getHeight() - 45 - height);
 
             x += barWidth + 25;
         }

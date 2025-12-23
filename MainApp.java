@@ -37,12 +37,12 @@ public class MainApp extends JFrame {
         setLayout(new BorderLayout());
 
         voter = new Voter("user1");
-        poll = new Poll("Masukkan pertanyaan polling", new String[]{});
+        poll = new Poll("Masukkan pertanyaan polling", new String[] {});
 
         add(createHeader(), BorderLayout.NORTH);
         add(createMainPanel(), BorderLayout.CENTER);
         add(createBottomPanel(), BorderLayout.SOUTH);
-        
+
         // Set look and feel
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
@@ -55,7 +55,7 @@ public class MainApp extends JFrame {
         JPanel header = new JPanel();
         header.setBackground(new Color(52, 73, 94));
         header.setBorder(BorderFactory.createEmptyBorder(15, 10, 15, 10));
-        
+
         JLabel title = new JLabel("SISTEM VOTING");
         title.setForeground(Color.WHITE);
         title.setFont(new Font("Segoe UI", Font.BOLD, 24));
@@ -67,7 +67,7 @@ public class MainApp extends JFrame {
         JPanel main = new JPanel(new GridLayout(1, 2, 15, 0));
         main.setBorder(BorderFactory.createEmptyBorder(15, 15, 15, 15));
         main.setBackground(new Color(240, 240, 240));
-        
+
         main.add(createLeftPanel());
         main.add(createRightPanel());
         return main;
@@ -77,10 +77,10 @@ public class MainApp extends JFrame {
     private JPanel createLeftPanel() {
         JPanel left = new JPanel(new BorderLayout(10, 10));
         left.setBackground(new Color(240, 240, 240));
-        
+
         left.add(createSetupPanel(), BorderLayout.NORTH);
         left.add(createOptionPanel(), BorderLayout.CENTER);
-        
+
         JPanel statusPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
         statusPanel.setBackground(new Color(240, 240, 240));
         JLabel status = new JLabel("Voting " + (voter.canVote() ? "Satu Kali" : "Tidak Ganda"));
@@ -104,19 +104,19 @@ public class MainApp extends JFrame {
         JLabel qLabel = new JLabel("Pertanyaan:");
         qLabel.setFont(new Font("Arial", Font.BOLD, 12));
         qPanel.add(qLabel, BorderLayout.WEST);
-        
+
         txtQuestion = new JTextField("Masukkan pertanyaan polling");
         txtQuestion.setFont(new Font("Arial", Font.PLAIN, 12));
         txtQuestion.setBorder(BorderFactory.createCompoundBorder(
                 BorderFactory.createLineBorder(new Color(200, 200, 200)),
                 BorderFactory.createEmptyBorder(5, 5, 5, 5)));
-        
+
         JButton btnUpdate = new JButton("Update");
         btnUpdate.setBackground(new Color(52, 152, 219));
         btnUpdate.setForeground(Color.WHITE);
         btnUpdate.setFont(new Font("Arial", Font.BOLD, 12));
         btnUpdate.setBorder(BorderFactory.createEmptyBorder(8, 15, 8, 15));
-        
+
         qPanel.add(txtQuestion, BorderLayout.CENTER);
         qPanel.add(btnUpdate, BorderLayout.EAST);
 
@@ -126,19 +126,19 @@ public class MainApp extends JFrame {
         JLabel addLabel = new JLabel("Opsi Baru:");
         addLabel.setFont(new Font("Arial", Font.BOLD, 12));
         addPanel.add(addLabel, BorderLayout.WEST);
-        
+
         txtNewOption = new JTextField();
         txtNewOption.setFont(new Font("Arial", Font.PLAIN, 12));
         txtNewOption.setBorder(BorderFactory.createCompoundBorder(
                 BorderFactory.createLineBorder(new Color(200, 200, 200)),
                 BorderFactory.createEmptyBorder(5, 5, 5, 5)));
-        
+
         JButton btnAdd = new JButton("Tambah");
         btnAdd.setBackground(new Color(46, 204, 113));
         btnAdd.setForeground(Color.WHITE);
         btnAdd.setFont(new Font("Arial", Font.BOLD, 12));
         btnAdd.setBorder(BorderFactory.createEmptyBorder(8, 15, 8, 15));
-        
+
         addPanel.add(txtNewOption, BorderLayout.CENTER);
         addPanel.add(btnAdd, BorderLayout.EAST);
 
@@ -159,7 +159,7 @@ public class MainApp extends JFrame {
         });
 
         btnAdd.addActionListener(e -> addOption());
-        
+
         // Enter key untuk tambah opsi
         txtNewOption.addActionListener(e -> addOption());
 
@@ -194,14 +194,14 @@ public class MainApp extends JFrame {
 
         JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 10));
         buttonPanel.setBackground(Color.WHITE);
-        
+
         JButton btnClear = new JButton("Hapus Semua Opsi");
         btnClear.setBackground(new Color(231, 76, 60));
         btnClear.setForeground(Color.WHITE);
         btnClear.setFont(new Font("Arial", Font.BOLD, 12));
         btnClear.setBorder(BorderFactory.createEmptyBorder(8, 15, 8, 15));
         btnClear.addActionListener(e -> clearOptions());
-        
+
         buttonPanel.add(btnClear);
 
         optionPanel.add(scroll, BorderLayout.CENTER);
@@ -221,21 +221,21 @@ public class MainApp extends JFrame {
                 BorderFactory.createLineBorder(new Color(241, 196, 15), 2),
                 "📊 Grafik Hasil Voting"));
         chartContainer.setBackground(Color.WHITE);
-        
+
         chartPanel = new ChartPanel(poll);
         chartContainer.add(chartPanel, BorderLayout.CENTER);
-        
+
         // Panel Tabel
         JPanel tableContainer = new JPanel(new BorderLayout());
         tableContainer.setBorder(BorderFactory.createTitledBorder(
                 BorderFactory.createLineBorder(new Color(26, 188, 156), 2),
                 "📋 Data Voting"));
         tableContainer.setBackground(Color.WHITE);
-        
+
         tableModel = new DefaultTableModel(
-                new Object[]{"No", "Opsi", "Jumlah Vote", "Persentase"}, 0);
+                new Object[] { "No", "Opsi", "Jumlah Vote", "Persentase" }, 0);
         table = new JTable(tableModel);
-        
+
         // Styling tabel
         table.setFont(new Font("Arial", Font.PLAIN, 12));
         table.getTableHeader().setFont(new Font("Arial", Font.BOLD, 12));
@@ -244,7 +244,7 @@ public class MainApp extends JFrame {
         table.setRowHeight(25);
         table.setShowGrid(true);
         table.setGridColor(new Color(220, 220, 220));
-        
+
         JScrollPane tableScroll = new JScrollPane(table);
         tableScroll.setPreferredSize(new Dimension(500, 200));
         tableContainer.add(tableScroll, BorderLayout.CENTER);
@@ -264,7 +264,7 @@ public class MainApp extends JFrame {
         // Style untuk semua tombol
         Color buttonColor = new Color(41, 128, 185);
         Color hoverColor = new Color(52, 152, 219);
-        
+
         JButton btnSave = createStyledButton("Save Polling", buttonColor);
         JButton btnLoad = createStyledButton("Load Polling", new Color(46, 204, 113));
         JButton btnResetMe = createStyledButton("Reset Vote Saya", new Color(241, 196, 15));
@@ -295,17 +295,18 @@ public class MainApp extends JFrame {
                 BorderFactory.createRaisedBevelBorder(),
                 BorderFactory.createEmptyBorder(10, 20, 10, 20)));
         button.setFocusPainted(false);
-        
+
         // Hover effect
         button.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 button.setBackground(color.brighter());
             }
+
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 button.setBackground(color);
             }
         });
-        
+
         return button;
     }
 
@@ -324,13 +325,13 @@ public class MainApp extends JFrame {
 
         refreshOptionButtons();
         refreshTable();
-        
+
         JOptionPane.showMessageDialog(this, "Opsi berhasil ditambahkan!");
     }
 
     private void refreshOptionButtons() {
         panelOptions.removeAll();
-        
+
         if (options.isEmpty()) {
             JLabel emptyLabel = new JLabel("📋 Belum ada opsi. Tambahkan dulu!");
             emptyLabel.setForeground(Color.GRAY);
@@ -342,11 +343,11 @@ public class MainApp extends JFrame {
                 int idx = i;
                 JButton btn = createOptionButton(options.get(i), i);
                 btn.addActionListener(e -> vote(idx));
-                
+
                 // Atur alignment agar tombol berada di tengah horizontal
                 btn.setAlignmentX(Component.CENTER_ALIGNMENT);
                 panelOptions.add(btn);
-                
+
                 // Tambah spacing antar tombol
                 panelOptions.add(Box.createRigidArea(new Dimension(0, 5)));
             }
@@ -361,7 +362,7 @@ public class MainApp extends JFrame {
         button.setMaximumSize(new Dimension(400, 40));
         button.setMinimumSize(new Dimension(200, 40));
         button.setPreferredSize(new Dimension(350, 40));
-        
+
         // Styling tombol
         button.setBackground(new Color(155, 89, 182));
         button.setForeground(Color.BLACK);
@@ -370,7 +371,7 @@ public class MainApp extends JFrame {
                 BorderFactory.createLineBorder(new Color(142, 68, 173), 2),
                 BorderFactory.createEmptyBorder(8, 15, 8, 15)));
         button.setCursor(new Cursor(Cursor.HAND_CURSOR));
-        
+
         // Hover effect
         button.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -379,6 +380,7 @@ public class MainApp extends JFrame {
                         BorderFactory.createLineBorder(new Color(125, 60, 152), 2),
                         BorderFactory.createEmptyBorder(8, 15, 8, 15)));
             }
+
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 button.setBackground(new Color(155, 89, 182));
                 button.setBorder(BorderFactory.createCompoundBorder(
@@ -386,13 +388,13 @@ public class MainApp extends JFrame {
                         BorderFactory.createEmptyBorder(8, 15, 8, 15)));
             }
         });
-        
+
         return button;
     }
 
     private void vote(int index) {
         if (!voter.canVote()) {
-            JOptionPane.showMessageDialog(this, "❌ Anda sudah melakukan vote!", "Peringatan", 
+            JOptionPane.showMessageDialog(this, "❌ Anda sudah melakukan vote!", "Peringatan",
                     JOptionPane.WARNING_MESSAGE);
             return;
         }
@@ -401,13 +403,13 @@ public class MainApp extends JFrame {
             voter.setVoted();
             refreshTable();
             chartPanel.repaint();
-            
+
             // Tampilkan konfirmasi
             String message = String.format("✅ Vote Anda untuk '%s' telah direkam!", options.get(index));
             JOptionPane.showMessageDialog(this, message, "Sukses", JOptionPane.INFORMATION_MESSAGE);
-            
+
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, "❌ Error: " + ex.getMessage(), 
+            JOptionPane.showMessageDialog(this, "❌ Error: " + ex.getMessage(),
                     "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
@@ -419,24 +421,24 @@ public class MainApp extends JFrame {
         for (int i = 0; i < options.size(); i++) {
             int v = poll.getVoteCount(i);
             double p = total == 0 ? 0 : (v * 100.0 / total);
-            tableModel.addRow(new Object[]{
-                    i + 1, 
-                    options.get(i), 
-                    v, 
+            tableModel.addRow(new Object[] {
+                    i + 1,
+                    options.get(i),
+                    v,
                     String.format("%.1f%%", p)
             });
         }
     }
 
     private void clearOptions() {
-        int confirm = JOptionPane.showConfirmDialog(this, 
-                "Apakah Anda yakin ingin menghapus semua opsi?", 
-                "Konfirmasi", 
+        int confirm = JOptionPane.showConfirmDialog(this,
+                "Apakah Anda yakin ingin menghapus semua opsi?",
+                "Konfirmasi",
                 JOptionPane.YES_NO_OPTION);
-        
+
         if (confirm == JOptionPane.YES_OPTION) {
             options.clear();
-            poll.updateOptions(new String[]{});
+            poll.updateOptions(new String[] {});
             refreshOptionButtons();
             refreshTable();
             chartPanel.repaint();
@@ -445,13 +447,13 @@ public class MainApp extends JFrame {
     }
 
     private void resetAll() {
-        int confirm = JOptionPane.showConfirmDialog(this, 
+        int confirm = JOptionPane.showConfirmDialog(this,
                 "Apakah Anda yakin ingin mereset semua data polling?\n" +
-                "Semua vote akan dihapus!", 
-                "Konfirmasi Reset", 
+                        "Semua vote akan dihapus!",
+                "Konfirmasi Reset",
                 JOptionPane.YES_NO_OPTION,
                 JOptionPane.WARNING_MESSAGE);
-        
+
         if (confirm == JOptionPane.YES_OPTION) {
             poll.resetAllVotes();
             voter = new Voter("user1");
@@ -467,14 +469,14 @@ public class MainApp extends JFrame {
         if (fc.showSaveDialog(this) == JFileChooser.APPROVE_OPTION) {
             try {
                 poll.saveToFile(fc.getSelectedFile());
-                JOptionPane.showMessageDialog(this, 
-                        "✅ Data polling berhasil disimpan!", 
-                        "Sukses", 
+                JOptionPane.showMessageDialog(this,
+                        "✅ Data polling berhasil disimpan!",
+                        "Sukses",
                         JOptionPane.INFORMATION_MESSAGE);
             } catch (Exception e) {
-                JOptionPane.showMessageDialog(this, 
-                        "❌ Error: " + e.getMessage(), 
-                        "Error", 
+                JOptionPane.showMessageDialog(this,
+                        "❌ Error: " + e.getMessage(),
+                        "Error",
                         JOptionPane.ERROR_MESSAGE);
             }
         }
@@ -487,19 +489,20 @@ public class MainApp extends JFrame {
             try {
                 poll = Poll.loadFromFile(fc.getSelectedFile());
                 options.clear();
-                for (String s : poll.getOptions()) options.add(s);
+                for (String s : poll.getOptions())
+                    options.add(s);
                 chartPanel.setPoll(poll);
                 txtQuestion.setText(poll.getQuestion());
                 refreshOptionButtons();
                 refreshTable();
-                JOptionPane.showMessageDialog(this, 
-                        "✅ Data polling berhasil dimuat!", 
-                        "Sukses", 
+                JOptionPane.showMessageDialog(this,
+                        "✅ Data polling berhasil dimuat!",
+                        "Sukses",
                         JOptionPane.INFORMATION_MESSAGE);
             } catch (Exception e) {
-                JOptionPane.showMessageDialog(this, 
-                        "❌ Error: " + e.getMessage(), 
-                        "Error", 
+                JOptionPane.showMessageDialog(this,
+                        "❌ Error: " + e.getMessage(),
+                        "Error",
                         JOptionPane.ERROR_MESSAGE);
             }
         }
@@ -510,10 +513,10 @@ public class MainApp extends JFrame {
             try {
                 MainApp app = new MainApp();
                 app.setVisible(true);
-                
+
                 // Tambah icon jika tersedia
                 // app.setIconImage(Toolkit.getDefaultToolkit().getImage("icon.png"));
-                
+
             } catch (Exception e) {
                 e.printStackTrace();
             }

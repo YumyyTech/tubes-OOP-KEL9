@@ -3,7 +3,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Other/File.java to edit this template
  */
 
-
 /**
  *
  * @author rank
@@ -48,7 +47,8 @@ public class Poll implements Pollable {
 
     public int getTotalVotes() {
         int total = 0;
-        for (int v : votes) total += v;
+        for (int v : votes)
+            total += v;
         return total;
     }
 
